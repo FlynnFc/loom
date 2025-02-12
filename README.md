@@ -1,5 +1,6 @@
 <p align="center">
-  <img  width="200" src="https://github.com/user-attachments/assets/3bb7c1cc-5c97-4755-aa12-dfa85bc91344" alt="Centered Image"/>
+  
+  <img  width="200" src="https://github.com/user-attachments/assets/7aaac5a9-aa22-4406-8524-0ba4816a2171" alt="Centered Image"/>
   <h1 align="center">Warden</h1>
 </p>
 
