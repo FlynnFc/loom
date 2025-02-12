@@ -20,7 +20,7 @@
 
 ## Overview
 
-Welcome to **Warden**! This project is my personal exploration into the world of service meshes, inspired by Envoy and built using the Zig programming language. The primary goal is educational: to gain hands-on experience with Kubernetes, understand microservices networking, and explore the design and implementation challenges of a service mesh 🕸️.
+Welcome to **Warden**! 🚨 This project is my personal exploration into the world of service meshes, inspired by Envoy and built using the Zig programming language.🎓 The primary goal is educational: to gain hands-on experience with Kubernetes, understand microservices networking, and explore the design and implementation challenges of a service mesh 🕸️.
 
 ## Why Warden?
 
