@@ -60,7 +60,6 @@ At its core, Warden is designed to:
 - **Rate Limiting & Quotas:** Implement traffic control mechanisms to prevent service overload.
 - **Edge Features:** Basic ingress/egress management (with a focus on simplicity and learning).
 
----
 
 ## What Warden Won't Be
 
@@ -70,7 +69,6 @@ For the purpose of maintaining focus and managing scope in this educational proj
 - **Exhaustive Protocol Support:** Advanced protocol translations (e.g., legacy TCP proxies or bridging between diverse protocols) are out of scope.
 - **Enterprise-Grade Features:** While some features may overlap with production service meshes, the goal here is learning and exploration rather than full enterprise readiness.
 
----
 
 ## Getting Started
 
@@ -94,19 +92,16 @@ For the purpose of maintaining focus and managing scope in this educational proj
 3. **Deploy to Kubernetes:**
    - Follow the deployment instructions in the `deploy/` directory to integrate Warden with your Kubernetes cluster.
 
----
 
 ## Contributing
 
 I welcome contributions, ideas, and feedback! If you’re interested in exploring the internals of service meshes or have suggestions for new features (or educational experiments), please open an issue or submit a pull request.
 
----
 
 ## License
 
 Warden is released under the [MIT License](LICENSE).
 
----
 
 ## Final Thoughts
 
@@ -114,6 +109,5 @@ Warden is both a learning tool and an experimental service mesh. While it won’
 
 Happy learning and exploring!
 
----
 
 _🛡️🕸️⚡_
