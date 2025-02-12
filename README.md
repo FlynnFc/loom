@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  A Zig-Based Service Mesh for Kubernetes – For Learning, Building, and Exploring.
+  ⚡👮‍♂️A Zig-Based Service Mesh for Kubernetes – For Learning, Building, and Exploring.👮‍♂️⚡
 </p>
 
 <p align="center">
