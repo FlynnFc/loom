@@ -20,55 +20,43 @@
 
 ## Overview
 
-Welcome to **Warden**! This project is my personal exploration into the world of service meshes, inspired by Envoy and built using the Zig programming language. The primary goal is educational: to gain hands-on experience with Kubernetes, understand microservices networking, and explore the design and implementation challenges of a service mesh.
+Welcome to **Warden**! This project is my personal exploration into the world of service meshes, inspired by Envoy and built using the Zig programming language. The primary goal is educational: to gain hands-on experience with Kubernetes, understand microservices networking, and explore the design and implementation challenges of a service mesh 🕸️.
 
 ## Why Warden?
 
-- **Educational Journey:** I’m building Warden to deepen my understanding of Kubernetes internals, traffic management, observability, chaos testing and the intricacies of service-to-service communication.
-- **Zig Exploration:** Zig’s performance, safety, and simplicity make it an excellent candidate for building low-level, high-performance systems like a service mesh.
-- **Inspired by Envoy:** While Envoy provides a rich set of features, Warden aims to implement core concepts in a more minimalist, experimental manner, shedding light on the underlying mechanics without the complexity of a full-fledged production system.
+- **📖 Educational Journey:** I’m building Warden to deepen my understanding of Kubernetes internals, traffic management, observability, chaos testing and the intricacies of service-to-service communication.
+- **🕵️ Zig Exploration:** Zig’s performance, safety, and simplicity make it an excellent candidate for building low-level, high-performance systems like a service mesh.
 
 ## What Warden Does
 
 At its core, Warden is designed to:
 
-- **Manage Traffic:** Route, load balance, and implement basic circuit breaking between services.
-- **Enhance Observability:** Collect logs, metrics, and provide tracing hooks to monitor service interactions.
-- **Enforce Security:** Facilitate secure communication (e.g., TLS) between microservices.
-- **Integrate with Kubernetes:** Discover services and endpoints dynamically through the Kubernetes API.
+- **🚦 Manage Traffic:** Route, load balance, and implement basic circuit breaking between services.
+- **👀 Enhance Observability:** Collect logs, metrics, and provide tracing hooks to monitor service interactions.
+- **👮 Enforce Security:** Facilitate secure communication (e.g., TLS) between microservices.
+- **🪢 Integrate with Kubernetes:** Discover services and endpoints dynamically through the Kubernetes API.
 
 ## Roadmap
 
 ### **MVP**
 
-- **Basic Traffic Routing:** Implement fundamental request routing between services.
-- **Load Balancing:** Distribute requests evenly across available service instances.
-- **Logging & Metrics:** Integrate simple logging and metrics to monitor traffic and health.
-- **Kubernetes Service Discovery:** Connect with the Kubernetes API to dynamically fetch service endpoints.
+- **🛻 Basic Traffic Routing:** Implement fundamental request routing between services.
+- **⚖️ Load Balancing:** Distribute requests evenly across available service instances.
+- **🪵 Logging & Metrics:** Integrate simple logging and metrics to monitor traffic and health.
+- **🪄 Kubernetes Service Discovery:** Connect with the Kubernetes API to dynamically fetch service endpoints.
 
 ### **Next Steps**
 
-- **mTLS Integration:** Secure service-to-service communication using mutual TLS.
-- **Advanced Routing Policies:** Add features such as retries, timeouts, and basic circuit breaking.
-- **Distributed Tracing:** Introduce hooks for tracing requests across services for better observability.
-- **Dynamic Configuration:** Enable hot-reloading and runtime configuration changes via Kubernetes CRDs or similar mechanisms.
+- **🦜 mTLS Integration:** Secure service-to-service communication using mutual TLS.
+- **🧑‍⚖️ Advanced Routing Policies:** Add features such as retries, timeouts, and basic circuit breaking.
+- **🧵 Distributed Tracing:** Introduce hooks for tracing requests across services for better observability.
+- **✍️ Dynamic Configuration:** Enable hot-reloading and runtime configuration changes via Kubernetes CRDs or similar mechanisms.
 
 ### **Future Explorations**
 
-- **Fault Injection & Testing:** Simulate failures to test resiliency.
-- **Policy-Based Routing:** Experiment with routing based on custom policies and metadata.
-- **Rate Limiting & Quotas:** Implement traffic control mechanisms to prevent service overload.
-- **Edge Features:** Basic ingress/egress management (with a focus on simplicity and learning).
-
-
-## What Warden Won't Be
-
-For the purpose of maintaining focus and managing scope in this educational project, **Warden** will **not** implement:
-
-- **Multi-Cluster Support:** This project is centered on single-cluster deployments for clarity and manageability.
-- **Exhaustive Protocol Support:** Advanced protocol translations (e.g., legacy TCP proxies or bridging between diverse protocols) are out of scope.
-- **Enterprise-Grade Features:** While some features may overlap with production service meshes, the goal here is learning and exploration rather than full enterprise readiness.
-
+- **⁉️ Fault Injection & Testing:** Simulate failures to test resiliency.
+- **🛣️ Policy-Based Routing:** Experiment with routing based on custom policies and metadata.
+- **🐢 Rate Limiting & Quotas:** Implement traffic control mechanisms to prevent service overload.
 
 ## Getting Started
 
@@ -102,12 +90,6 @@ I welcome contributions, ideas, and feedback! If you’re interested in explorin
 
 Warden is released under the [MIT License](LICENSE).
 
-
-## Final Thoughts
-
-Warden is both a learning tool and an experimental service mesh. While it won’t cover every feature found in production-ready systems, it serves as a playground for understanding the core principles of service communication, Kubernetes integration, and modern networking challenges.
-
-Happy learning and exploring!
 
 
 _🛡️🕸️⚡_
