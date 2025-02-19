@@ -58,29 +58,6 @@ At its core, Warden is designed to:
 - **🛣️ Policy-Based Routing:** Experiment with routing based on custom policies and metadata.
 - **🐢 Rate Limiting & Quotas:** Implement traffic control mechanisms to prevent service overload.
 
-## Getting Started
-
-### Prerequisites
-
-- [Zig Compiler](https://ziglang.org/)
-- Access to a Kubernetes cluster (local setups like [Kind](https://kind.sigs.k8s.io/) or [Minikube](https://minikube.sigs.k8s.io/) work well)
-- Basic knowledge of Kubernetes and microservices concepts
-
-### Installation
-
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/yourusername/warden.git
-   cd warden
-   ```
-2. **Build Warden:**
-   ```bash
-   zig build
-   ```
-3. **Deploy to Kubernetes:**
-   - Follow the deployment instructions in the `deploy/` directory to integrate Warden with your Kubernetes cluster.
-
-
 ## Contributing
 
 I welcome contributions, ideas, and feedback! If you’re interested in exploring the internals of service meshes or have suggestions for new features (or educational experiments), please open an issue or submit a pull request.
