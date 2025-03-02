@@ -1,7 +1,7 @@
 <p align="center">
   
   <img  width="200" src="https://github.com/user-attachments/assets/7aaac5a9-aa22-4406-8524-0ba4816a2171" alt="Centered Image"/>
-  <h1 align="center">Warden</h1>
+  <h1 align="center">loom</h1>
 </p>
 
 <p align="center">
@@ -20,16 +20,16 @@
 
 ## Overview
 
-Welcome to **Warden**! 🚨 This project is my personal exploration into the world of service meshes, inspired by Envoy and built using the Zig programming language.🎓 The primary goal is educational: to gain hands-on experience with Kubernetes, understand microservices networking, and explore the design and implementation challenges of a service mesh 🕸️.
+Welcome to **loom**! 🚨 This project is my personal exploration into the world of service meshes, inspired by Envoy and built using the Zig programming language.🎓 The primary goal is educational: to gain hands-on experience with Kubernetes, understand microservices networking, and explore the design and implementation challenges of a service mesh 🕸️.
 
-## Why Warden?
+## Why loom?
 
-- **📖 Educational Journey:** I’m building Warden to deepen my understanding of Kubernetes internals, traffic management, observability, chaos testing and the intricacies of service-to-service communication.
+- **📖 Educational Journey:** I’m building loom to deepen my understanding of Kubernetes internals, traffic management, observability, chaos testing and the intricacies of service-to-service communication.
 - **🕵️ Zig Exploration:** Zig’s performance, safety, and simplicity make it an excellent candidate for building low-level, high-performance systems like a service mesh.
 
-## What Warden Does
+## What loom Does
 
-At its core, Warden is designed to:
+At its core, loom is designed to:
 
 - **🚦 Manage Traffic:** Route, load balance, and implement basic circuit breaking between services.
 - **👀 Enhance Observability:** Collect logs, metrics, and provide tracing hooks to monitor service interactions.
@@ -62,11 +62,8 @@ At its core, Warden is designed to:
 
 I welcome contributions, ideas, and feedback! If you’re interested in exploring the internals of service meshes or have suggestions for new features (or educational experiments), please open an issue or submit a pull request.
 
-
 ## License
 
-Warden is released under the [MIT License](LICENSE).
-
-
+loom is released under the [MIT License](LICENSE).
 
 _🛡️🕸️⚡_
