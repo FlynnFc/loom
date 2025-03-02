@@ -1,6 +1,6 @@
 <p align="center">
   
-  <img  width="200" src="https://github.com/user-attachments/assets/a5d32670-0979-47e9-a26e-b5c3ab200146" alt="Centered Image"/>
+  <img  width="200" src="https://github.com/user-attachments/assets/1d432bee-64c8-4249-ad00-f285db103fae" alt="Centered Image"/>
   <h1 align="center">loom</h1>
 </p>
 <p align="center">
