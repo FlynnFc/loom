@@ -1,45 +1,35 @@
-//! By convention, main.zig is where your main function lives in the case that
-//! you are building an executable. If you are making a library, the convention
-//! is to delete this file and start with root.zig instead.
-
-pub fn main() !void {
-    // Prints to stderr (it's a shortcut based on `std.io.getStdErr()`)
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
-
-    // stdout is for the actual output of your application, for example if you
-    // are implementing gzip, then only the compressed bytes should be sent to
-    // stdout, not any debugging messages.
-    const stdout_file = std.io.getStdOut().writer();
-    var bw = std.io.bufferedWriter(stdout_file);
-    const stdout = bw.writer();
-
-    try stdout.print("Run `zig build test` to run the tests.\n", .{});
-
-    try bw.flush(); // Don't forget to flush!
-}
-
-test "simple test" {
-    var list = std.ArrayList(i32).init(std.testing.allocator);
-    defer list.deinit(); // Try commenting this out and see if zig detects the memory leak!
-    try list.append(42);
-    try std.testing.expectEqual(@as(i32, 42), list.pop());
-}
-
-test "use other module" {
-    try std.testing.expectEqual(@as(i32, 150), lib.add(100, 50));
-}
-
-test "fuzz example" {
-    const global = struct {
-        fn testOne(input: []const u8) anyerror!void {
-            // Try passing `--fuzz` to `zig build test` and see if it manages to fail this test case!
-            try std.testing.expect(!std.mem.eql(u8, "canyoufindme", input));
-        }
-    };
-    try std.testing.fuzz(global.testOne, .{});
-}
-
+const Config = @import("config.zig");
+const Discovery = @import("discovery.zig");
+const Proxy = @import("proxy.zig");
+const log = @import("logging.zig");
 const std = @import("std");
+pub fn main() !void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    defer gpa.deinit();
+    const allocator = gpa.allocator();
 
-/// This imports the separate module containing `root.zig`. Take a look in `build.zig` for details.
-const lib = @import("Warden_lib");
+    // 1) Load/parse config. In production, you might load from
+    //    environment variables, config files, or command line args.
+    const config = Config.Config{
+        .listen_port = 8080,
+        .kube_api_url = "https://kubernetes.default.svc", // placeholder
+        .service_name = "example-service",
+        .discovery_enabled = true,
+    };
+
+    // 2) Initialize your logger
+    log.init(allocator);
+    defer log.deinit();
+    log.info("Starting loom Service Mesh", .{});
+
+    // 3) Kubernetes service discovery
+    const endpoints = if (config.discovery_enabled)
+        try Discovery.discoverEndpoints(allocator, config)
+    else
+        // Hardcode for local testing
+        &[_]std.mem.TokenizedString{std.mem.tokenizeString("127.0.0.1:9000", ":")};
+
+    // 4) Start the proxy that listens on config.listen_port
+    log.info("Initializing proxy...", .{});
+    try Proxy.runProxy(allocator, config, endpoints);
+}
