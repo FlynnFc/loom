@@ -1,7 +1,5 @@
 <p align="center">
-  
-  <img  width="200" src="https://github.com/user-attachments/assets/1d432bee-64c8-4249-ad00-f285db103fae" alt="Centered Image"/>
-  <h1 align="center">loom</h1>
+  <img  width="200" src="https://github.com/user-attachments/assets/c4fe88a6-1f66-4be3-9e15-d72ec4e439c0" alt="Centered Image"/>
 </p>
 <p align="center">
   ⚡🧵A Zig-Based Service Mesh for Kubernetes – For Learning, Building, and Exploring.🧵⚡
