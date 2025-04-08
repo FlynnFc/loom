@@ -1,72 +1,49 @@
 const std = @import("std");
-const log = @import("logging.zig");
+const log = @import("logging.zig"); // Adjust this module as needed
+const posix = std.posix;
 
 pub fn runProxy(
     allocator: *std.mem.Allocator,
-    config: anytype, // Simplified
-    endpoints: []std.mem.TokenizedString,
+    config: anytype, // Simplified config containing a .listen_port field (u16)
+    endpoints: []std.mem.TokenIterator(u8, std.mem.DelimiterType.any),
 ) !void {
-    var listener = try std.net.listenIPv4(config.listen_port, 128);
+    // Parse a listening address on all interfaces
+    const listen_addr = try std.net.Address.parseIp("0.0.0.0", config.listen_port);
+    // Create a listener (with a backlog of 128)
+    var listener = try listen_addr.listen(.{ .kernel_backlog = 128 });
     defer listener.deinit();
 
     log.info("Listening on port {d}...", .{config.listen_port});
 
-    _ = allocator;
-    // Round-robin index
+    // Round-robin index for endpoint selection
     var idx: usize = 0;
-
     while (true) {
-        const conn = try listener.accept();
-        // Dispatch the connection in a separate task if you have async/threads
-        handleConnection(conn, endpoints, &idx) catch |e| {
-            log.errorF("Connection error: {s}", .{e});
-        };
+        // Accept a new connection
+        var conn = try listener.accept();
+        {
+            // Ensure we close the connection when done.
+            defer conn.close();
+            // Handle the connection (in production you might spawn a separate task)
+            handleConnection(conn.stream, endpoints, &idx, allocator) catch |e| {
+                log.errorF("Connection error: {s}", .{e});
+            };
+        }
     }
 }
 
 fn handleConnection(
-    conn: std.net.Connection,
-    endpoints: []std.mem.TokenizedString,
+    conn: std.net.Stream,
+    endpoints: []std.mem.TokenIterator(u8, std.mem.DelimiterType.any),
     round_robin_idx: *usize,
+    allocator: *std.mem.Allocator,
 ) !void {
-    // Get an endpoint in round-robin fashion
-    const next_idx = *round_robin_idx % endpoints.len;
-    round_robin_idx.* += 1;
-    // For simplicity, assume the endpoints have two tokens: [IP, PORT]
-    // e.g. "10.42.0.10" and "9000"
-    const ip_port = endpoints[next_idx];
-    const ip = ip_port[0];
-    const port_str = ip_port[1];
+    _ = allocator;
+    // TODO
+    // Pick an endpoint in a round-robin fashion
+    // Parse the port number from the second token
+    // Build the destination address from IP and port
+    // Connect outbound
+    // Naively read from client and write to destination
+    // And then read from destination and write back to client
 
-    const maybe_port = std.fmt.parseInt(u16, port_str, 10);
-    if (maybe_port != null) |dest_port| {
-        // Connect to the destination
-        var dest_conn = try std.net.Connection.connectIp4String(ip, dest_port);
-        defer dest_conn.deinit();
-
-        // Proxy data between conn <-> dest_conn
-        // This is a naive, blocking approach.
-        // For production, we async I/O or concurrency
-        // so you we forward data in both directions.
-
-        // Forward client -> service
-        var buf_in: [1024]u8 = undefined;
-        const read_bytes = try conn.read(buf_in[0..]);
-        if (read_bytes > 0) {
-            _ = try dest_conn.write(buf_in[0..read_bytes]);
-        }
-        // Forward service -> client
-        const service_read = try dest_conn.read(buf_in[0..]);
-        if (service_read > 0) {
-            _ = try conn.write(buf_in[0..service_read]);
-        }
-
-        // Log the success
-        log.info("Proxied request from client to {s}:{s} - Round robin idx: {d}", .{ ip, port_str, next_idx });
-    } else {
-        log.errorf("Invalid port number in endpoint: {s}", .{port_str});
-    }
-
-    // Cleanup
-    conn.deinit();
 }
